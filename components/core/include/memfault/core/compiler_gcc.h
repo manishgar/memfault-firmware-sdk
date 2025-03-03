@@ -36,7 +36,7 @@ extern "C" {
 //!  If x is 0, the result is undefined.
 #define MEMFAULT_CLZ(a) ((a == 0) ? 32UL : (uint32_t)__builtin_clz(a))
 
-#if defined(__arm__)
+#if defined(__arm__) || defined(__aarch64__)
 #  define MEMFAULT_GET_LR(_a) _a = __builtin_return_address(0)
 #  define MEMFAULT_GET_PC(_a) __asm volatile ("mov %0, pc" : "=r" (_a))
 #  define MEMFAULT_BREAKPOINT(val) __asm volatile ("bkpt "#val)
